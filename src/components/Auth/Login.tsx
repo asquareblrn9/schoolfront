@@ -1,43 +1,68 @@
 import React from "react";
+import { Container } from "react-bootstrap";
 
 const Login = () => {
   return (
-    <section className="bg-gray-50">
-      <div className="container mx-auto">
-        <div className="flex justify-center items-center h-screen">
-          <div className="w-96 p-6 shadow-lg bg-white rounded-md">
-            <div className="mb-5">
-              <img
-              src="images/nochsolutions.com.ng-logonew.png"
-              alt="nochsolutions logo"
-              className=""
-              width={80}
-            />
-            </div>
-            <div className="mb-5">
-              <h1 className="text-1xl text-gray-500 font-semibold">Login</h1>
-            </div>
-            <div className="mb-3">
-              <label htmlFor="username" className="block text-base mb-2">Email</label>
-              <input type="email" className="border rounded-md w-full text-base px-2 py-1 focus:outline-none focus:ring-0 focus:border-blue" id="username" placeholder="Email Address"/>
-            </div>
+    <section className="bg-light" style={{ minHeight: "calc(100vh)" }}>
+      <div className="container">
+        <div className="authMain">
+          <div className="card border-0">
+            <div className="card-body px-5 py-5">
+              <div className="pb-2">
+                <img
+                  src="images/nochsolutions.com.ng-logonew.png"
+                  alt="nochsolutions logo"
+                  className="img-fluid"
+                  width={120}
+                />
+              </div>
 
-            <div className="mb-3">
-              <label htmlFor="password" className="block text-base mb-2">Password</label>
-              <input type="password" className="border rounded-md w-full text-base px-2 py-1 focus:outline-none focus:ring-0 focus:border-blue" id="password" placeholder="Email Address"/>
-            </div>
+              <div className="row auths">
+                <div className="col-md-6 col-sm-12">
+                  <h3 className="mb-3">Welcome back</h3>
+                  <form>
+                    <label className="form-label">Email Address</label>
+                    <div className="form-group mb-3">
+                      <input
+                        name="username"
+                        className="form-control form-control-lg"
+                        placeholder="email address"
+                      />
+                    </div>
 
-            <div>
-              <a href="/" className="text-indigo text-base align-right">Forgot Password</a>
-            </div>
+                    <div className="form-group mb-3">
+                      <label className="form-label">Password</label>
+                      <input
+                        name="password"
+                        className="form-control form-control-lg"
+                        placeholder="Password"
+                      />
+                    </div>
 
-            <div className="mt-5">
-              <button className="border-2 border-primary bg-primary text-white py-2 px-2 w-full rounded shadow-lg text-xl">Login</button>
+                    <div className="form-group mb-3">
+                      <button
+                        type="submit"
+                        className="py-2 btn btn-danger btn-block w-100"
+                      >
+                        Login
+                      </button>
+                    </div>
+                  </form>
+                </div>
 
+                <div className="col-md-6 col-sm-12">
+                  <img
+                    src="images/6310507.jpg"
+                    alt="nochsolutions logo"
+                    className="img-fluid"
+                  />
+                </div>
+              </div>
             </div>
           </div>
         </div>
-      </div>
+        </div>
+    
     </section>
   );
 };
