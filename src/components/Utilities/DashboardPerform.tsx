@@ -1,7 +1,7 @@
-import React from "react";
-import { Card, CardBody, Container, Table } from "react-bootstrap";
+import React from 'react'
+import { Card, CardBody, Container } from 'react-bootstrap';
 
-const DashboardStudent = () => {
+const DashboardPerform = () => {
     const students = [
         { id: 1, name: 'John Doe', email:'ade@gmail.com', grade: 'A', joinDate: '2023-01-10', phone:'08064289725' },
         { id: 2, name: 'Jane Smith', email:'ade@gmail.com', grade: 'B', joinDate: '2023-02-15', phone:'08122171074' },
@@ -9,11 +9,11 @@ const DashboardStudent = () => {
       ];
   return (
     <>
-      <section className="py-5">
+      <section >
         <Container>
         
           <Card className="p-3">
-            <h3 className="text-danger">Recent Students</h3>
+            <h3 className="text-danger">Best Performing Students</h3>
             <CardBody>
               <div className="table-responsive">
               <table className="table table-striped">
@@ -47,6 +47,6 @@ const DashboardStudent = () => {
       </section>
     </>
   );
-};
+}
 
-export default DashboardStudent;
+export default DashboardPerform

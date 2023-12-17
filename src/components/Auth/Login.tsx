@@ -1,7 +1,54 @@
-import React from "react";
+import React, { ChangeEvent, useState } from "react";
 import { Container } from "react-bootstrap";
+import { useAppDispatch } from "../../app/store";
+import { login } from "../../features/authSlice";
+import { useNavigate } from "react-router-dom";
+import { toast } from "react-toastify";
+
 
 const Login = () => {
+  const navigate = useNavigate()
+//interface
+  interface FormData{
+    email:string,
+    password: string
+  }
+  //setting dispatch
+  const dispatch = useAppDispatch()
+
+  //state for the data
+  const [formData, setFormData] = useState<FormData>({
+    email: '',
+    password: '',
+  });
+
+  //handle onchange
+  const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
+    const { name, value } = e.target;
+    setFormData((prevData) => ({
+      ...prevData,
+      [name]: value,
+    }));
+  };
+
+//login function
+  const handleLogin = (e: React.FormEvent<HTMLFormElement>) =>{
+    let data = {
+      email:formData.email,
+      password:formData.password,
+    };
+    e.preventDefault()
+    dispatch(login(data)).unwrap().then((response: string)=>{
+      
+      navigate('/dashboard')
+      toast.success(response)
+
+    }).catch((error: string)=>{
+      toast.error(error)
+    })
+    
+  }
+
   return (
     <section className="bg-light" style={{ minHeight: "calc(100vh)" }}>
       <div className="container">
@@ -20,13 +67,15 @@ const Login = () => {
               <div className="row auths">
                 <div className="col-md-6 col-sm-12">
                   <h3 className="mb-3">Welcome back</h3>
-                  <form>
+                  <form method="post" onSubmit={handleLogin}>
                     <label className="form-label">Email Address</label>
                     <div className="form-group mb-3">
                       <input
-                        name="username"
+                        name="email"
                         className="form-control form-control-lg"
                         placeholder="email address"
+                        value={formData.email}
+                        onChange={handleChange}
                       />
                     </div>
 
@@ -36,13 +85,15 @@ const Login = () => {
                         name="password"
                         className="form-control form-control-lg"
                         placeholder="Password"
+                        value={formData.password}
+                        onChange={handleChange}
                       />
                     </div>
 
                     <div className="form-group mb-3">
                       <button
                         type="submit"
-                        className="py-2 btn btn-danger btn-block w-100"
+                        className="py-2 btn btn-primary btn-block w-100"
                       >
                         Login
                       </button>

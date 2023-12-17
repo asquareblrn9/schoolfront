@@ -2,8 +2,11 @@
 
 /* make the customizations */
 $theme-colors: (
-  'info': tomato,
-  'danger': teal
+  'primary':#173361,
+  'secondary':#38cced,
+  'info': #f1faff,
+  'warning':#E98A15,
+  'danger': #77037B
 );
 
 /* import bootstrap to set changes */

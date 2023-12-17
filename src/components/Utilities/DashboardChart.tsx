@@ -69,7 +69,7 @@ const DashboardChart: React.FC = () => {
             <Col md={8} sm={12}>
             <Card className="border-0 dash-card">
                 <CardBody className="p-5">
-                  <h2>Student overview</h2>
+                  <h2 className="text-danger">Student overview</h2>
                   <Bar data={data} options={options} />
                 </CardBody>
               </Card>
@@ -89,7 +89,7 @@ const DashboardChart: React.FC = () => {
               <Card className="border-0 dash-card">
                 <CardBody>
                     <div className="mt-3">
-                      <h3>Calendar</h3>  
+                      <h3 className="text-danger">Calendar</h3>  
                     </div>
                     
                     <div className="d-flex justify-content-center w-100 h-100 py-5">

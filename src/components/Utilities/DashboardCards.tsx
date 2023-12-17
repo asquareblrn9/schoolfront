@@ -1,8 +1,14 @@
 import React from "react";
 import { Card, CardBody, Col, Container, Row } from "react-bootstrap";
 import { HiAcademicCap } from "react-icons/hi2";
+import { LiaChalkboardTeacherSolid } from "react-icons/lia"
+import { useAppSelector } from "../../app/store";
+import Cookies from 'js-cookie'
 
 const DashboardCards = () => {
+  const { user } = useAppSelector((state: any) => state.auth);
+  const newCook = Cookies.get('token')
+  console.log(newCook);
   return (
     <section className="py-5">
       <Container>
@@ -12,7 +18,7 @@ const DashboardCards = () => {
               <CardBody className="py-4">
                 <Row>
                   <Col md={3} sm={12}>
-                      <HiAcademicCap className="text-danger icons" />
+                      <HiAcademicCap className="text-primary icons" />
                   </Col>
                   <Col md={9} sm={12} className="p-3">
                     <div className="d-flex flex-column align-items-end">
@@ -31,7 +37,7 @@ const DashboardCards = () => {
               <CardBody className="py-4">
                 <Row>
                   <Col md={3} sm={12}>
-                      <HiAcademicCap className="text-danger icons" />
+                  <LiaChalkboardTeacherSolid className="text-secondary icons" />
                   </Col>
                   <Col md={9} sm={12} className="p-3">
                     <div className="d-flex flex-column align-items-end">
@@ -67,7 +73,7 @@ const DashboardCards = () => {
               <CardBody className="py-4">
                 <Row>
                   <Col md={3} sm={12}>
-                      <HiAcademicCap className="text-danger icons" />
+                      <HiAcademicCap className="text-secondary icons" />
                   </Col>
                   <Col md={9} sm={12} className="p-3">
                     <div className="d-flex flex-column align-items-end">

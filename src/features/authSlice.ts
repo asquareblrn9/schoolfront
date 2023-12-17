@@ -1,35 +1,36 @@
 import { createAsyncThunk, createSlice, PayloadAction } from "@reduxjs/toolkit";
-import axios from "axios";
+import axios, { AxiosResponse } from "axios";
 import { extractErrorMessage } from "../util";
+import { jwtDecode }from 'jwt-decode';
 
-// Get user from local storage
-const user: string | null = localStorage.getItem('userDetails');
 
 interface AuthState {
-  user: string | null;
+  user: string | string[] | null;
   isLoading: boolean;
   isLoggedIn: boolean;
   error?: string | null;
 }
 
 const initialState: AuthState = {
-  user: user ? user : null,
+  user: null,
   isLoading: false,
   isLoggedIn: false,
 };
 
+
 // Get main link
-const url: string | undefined = process.env.REACT_APP_BACKEND;
+const url = 'http://localhost:8000';
 
 // Login
-export const login = createAsyncThunk<string, { /* define your data type here */ }>(
+
+export const login = createAsyncThunk(
   'auth/login',
-  async (data, thunkAPI) => {
+  async (data: any, thunkAPI) => {
     try {
-      const response = await axios.post<string>(`${url}/auth/login`, data);
-      if (response.data) {
-        localStorage.setItem('userDetails', JSON.stringify(response.data));
-      }
+      const response: AxiosResponse = await axios.post(`${url}/api/users/login`, data, {
+        withCredentials: true,
+      });
+
       return response.data;
     } catch (error) {
       return thunkAPI.rejectWithValue(extractErrorMessage(error));
@@ -37,11 +38,23 @@ export const login = createAsyncThunk<string, { /* define your data type here */
   }
 );
 
-export const addUser = createAsyncThunk<string, { /* define your data type here */ }>(
+// export const login = createAsyncThunk(
+//   'auth/login',
+//   async (data: any, thunkAPI) => {
+//     try {
+//       const response = await axios.post(`${url}/api/users/login`, data);
+//       return response.data;
+//     } catch (error) {
+//       return thunkAPI.rejectWithValue(extractErrorMessage(error));
+//     }
+//   }
+// );
+
+export const addUser = createAsyncThunk(
   'auth/signup',
   async (data, thunkAPI) => {
     try {
-      const response = await axios.post<string>(`${url}/auth/signUp`, data);
+      const response = await axios.post(`${url}/auth/signUp`, data);
       return response.data;
     } catch (error) {
       return thunkAPI.rejectWithValue(extractErrorMessage(error));
@@ -50,11 +63,11 @@ export const addUser = createAsyncThunk<string, { /* define your data type here 
 );
 
 // Logout user
-export const logout = createAsyncThunk<void>('auth/logout', async () => {
+export const logout = createAsyncThunk('auth/logout', async () => {
   await localStorage.removeItem('userDetails');
 });
 
-export const authSlice = createSlice({
+export const AuthSlice = createSlice({
   name: 'auth',
   initialState,
   reducers: {},
@@ -82,4 +95,5 @@ export const authSlice = createSlice({
   },
 });
 
-export default authSlice.reducer;
+export default AuthSlice.reducer;
+
