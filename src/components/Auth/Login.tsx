@@ -50,7 +50,7 @@ const Login = () => {
   }
 
   return (
-    <section className="bg-light" style={{ minHeight: "calc(100vh)" }}>
+    <section>
       <div className="container">
         <div className="authMain">
           <div className="card border-0">
