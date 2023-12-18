@@ -19,7 +19,7 @@ const initialState: AuthState = {
 
 
 // Get main link
-const url = 'http://localhost:8000';
+const url = process.env.REACT_BACK_END
 
 // Login
 
