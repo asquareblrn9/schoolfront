@@ -44,6 +44,25 @@ export const addCategory = createAsyncThunk(
   }
 );
 
+// remove categgory
+export const deleteCategory = createAsyncThunk(
+  "category/deleteCategory",
+  async (id:number, thunkAPI) => {
+    try {
+      const response = await axios.post(
+        `${url}/api/schoolAdmin/deleteCategory/${id}`,
+        {
+          withCredentials: true,
+        }
+      );
+      return response.data;
+    } catch (error) {
+      return thunkAPI.rejectWithValue(extractErrorMessage(error));
+    }
+  }
+);
+
+
 //get all category
 export const getAllCategory = createAsyncThunk(
   "category/getAllCategory",

@@ -2,8 +2,9 @@ import React, { ChangeEvent, useEffect, useState } from "react";
 import AdminLayout from "../Main/AdminLayout";
 import { Card, CardBody, Col, Container, Row } from "react-bootstrap";
 import { useAppDispatch, useAppSelector } from "../../app/store";
-import { addCategory, getAllCategory } from "../../features/categorySlice";
+import { addCategory, deleteCategory, getAllCategory } from "../../features/categorySlice";
 import { toast } from "react-toastify";
+import { HiTrash } from "react-icons/hi2";
 
 const Category = () => {
          
@@ -12,6 +13,7 @@ const Category = () => {
   const { categories, isLoading } = useAppSelector((state) => state.category);
   const [currentPage, setCurrentPage] = useState(1);
   const [category, setCategory] = useState("");
+  const [hasExecuted, setExecuted] = useState(false)
 
   //submit category
   const handleSubmitCategory = (e: React.FormEvent<HTMLFormElement>) => {
@@ -22,6 +24,7 @@ const Category = () => {
     dispatch(addCategory(data))
       .unwrap()
       .then((response: any) => {
+        setExecuted(!hasExecuted)
         toast.success(response.message);
       })
       .catch((error: any) => {
@@ -30,11 +33,21 @@ const Category = () => {
       });
   };
 
+  const handleDeleteCategory = (id: number) =>{
+    dispatch(deleteCategory(id)).then((response: any)=>{
+        setExecuted(!hasExecuted)
+        toast.warning(response.message)
+    }).catch((error: string)=>{
+        toast.error(error)
+    })
+
+  }
+
   let sn: number = 0;
   //fetch category
   useEffect(() => {
     dispatch(getAllCategory());
-  }, [dispatch, currentPage]);
+  }, [dispatch, currentPage, hasExecuted]);
 
   console.log(categories);
 
@@ -98,7 +111,9 @@ const Category = () => {
                               <td>{++sn}</td>
                               <td>{item.category}</td>
                               <td>
-                                {/* Add additional columns or data if needed */}
+                               
+                                    <HiTrash className="text-danger" onClick={()=>handleDeleteCategory(item.id)} /> 
+                               
                               </td>
                             </tr>
                           )
