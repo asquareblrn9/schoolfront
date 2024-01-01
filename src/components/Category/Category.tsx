@@ -36,7 +36,7 @@ const Category = () => {
   const handleDeleteCategory = (id: number) =>{
     dispatch(deleteCategory(id)).then((response: any)=>{
         setExecuted(!hasExecuted)
-        toast.warning(response.message)
+        toast.warning(response)
     }).catch((error: string)=>{
         toast.error(error)
     })
@@ -47,7 +47,7 @@ const Category = () => {
   //fetch category
   useEffect(() => {
     dispatch(getAllCategory());
-  }, [dispatch, currentPage, hasExecuted]);
+  }, [currentPage, hasExecuted]);
 
   console.log(categories);
 

@@ -16,23 +16,24 @@ const SideNav = () => {
   </div>
   <hr className='text-dark' />
   <div className='list-group list-group-flush'>
-    <a href='#' className='list-group-item list-group-item-action my-2'>
+    <a href='/dashboard' className='list-group-item list-group-item-action my-2'>
       <LiaDashcube className='fs-1 px-2'/>
       <span>Dashboard</span>
     </a>
-
-    <a href='#' className='list-group-item list-group-item-action my-2'>
+    <a href='/Category' className='list-group-item list-group-item-action my-2'>
       <LiaDashcube className='fs-1 me-2'/>
-      <span>Home</span>
-    </a>
-    <a href='#' className='list-group-item list-group-item-action my-2'>
-      <LiaDashcube className='fs-1 me-2'/>
-      <span>Dashboard</span>
+      <span>Class Category</span>
     </a>
 
-    <a href='#' className='list-group-item list-group-item-action my-2'>
+    <a href='/classess' className='list-group-item list-group-item-action my-2'>
       <LiaDashcube className='fs-1 me-2'/>
-      <span>Home</span>
+      <span>Class</span>
+    </a>
+    
+
+    <a href='/subjects' className='list-group-item list-group-item-action my-2'>
+      <LiaDashcube className='fs-1 me-2'/>
+      <span>Subjects</span>
     </a>
 
   </div>

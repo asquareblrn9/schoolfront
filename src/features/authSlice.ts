@@ -1,7 +1,10 @@
 import { createAsyncThunk, createSlice, PayloadAction } from "@reduxjs/toolkit";
 import axios, { AxiosResponse } from "axios";
 import { extractErrorMessage } from "../util";
-import { jwtDecode }from 'jwt-decode';
+const { REACT_APP_BACKEND } = process.env;
+
+
+
 
 
 interface AuthState {
@@ -19,7 +22,10 @@ const initialState: AuthState = {
 
 
 // Get main link
-const url = process.env.REACT_BACK_END
+const url = REACT_APP_BACKEND || 'http://localhost:8000'; // Use an empty string as a default if undefined
+console.log(url);
+
+
 
 // Login
 

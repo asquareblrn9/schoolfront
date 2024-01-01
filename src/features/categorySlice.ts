@@ -49,7 +49,7 @@ export const deleteCategory = createAsyncThunk(
   "category/deleteCategory",
   async (id:number, thunkAPI) => {
     try {
-      const response = await axios.post(
+      const response = await axios.delete(
         `${url}/api/schoolAdmin/deleteCategory/${id}`,
         {
           withCredentials: true,

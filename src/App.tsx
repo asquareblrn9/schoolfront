@@ -9,6 +9,7 @@ import Classess from './components/Classess/Classess';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import Category from './components/Category/Category';
+import Subjects from './components/Subject/Subjects';
 
 
 function App() {
@@ -20,6 +21,7 @@ function App() {
       <Route path='/dashboard' element={<Dashboard />} />
       <Route path='/classess' element={<Classess />} />
       <Route path='/category' element={<Category />} />
+      <Route path='/subjects' element={<Subjects />} />
     </Routes>
     </>
   );

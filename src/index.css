@@ -31,4 +31,14 @@ html body {
   .content {
     margin-left: 0;
   }
+
+  .table-text{
+    font-family: inherit;
+    font-size: 20px;
+  }
+
+  .rdt_TableBody{
+    font-family: inherit;
+    font-size: 20px;
+  }
 }
